@@ -1,0 +1,7 @@
+{
+  "name": "project2/backend",
+  "description": "Minimal PHP backend for Project 2",
+  "require": {
+    "ext-pdo": "*"
+  }
+}

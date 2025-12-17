@@ -1,0 +1,38 @@
+name: Backend CI
+
+on:
+  push:
+    paths:
+      - "backend/**"
+      - ".github/workflows/backend.yml"
+  pull_request:
+    paths:
+      - "backend/**"
+      - ".github/workflows/backend.yml"
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: backend
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "5.6"
+          extensions: mysql, pdo, pdo_mysql, mysqli
+
+      - name: Lint entrypoint
+        run: php -l public/index.php
+
+      - name: Placeholder tests
+        run: echo "Add phpunit or functional tests here"
+
+      - name: Deploy via FTP (placeholder)
+        if: github.ref == 'refs/heads/main'
+        run: |
+          echo "Add FTP deploy step here (e.g. SamKirkland/FTP-Deploy-Action)."
